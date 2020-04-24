@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sleeve2?serverTimezone=GMT%2B8&characterEncoding=UTF-8
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+missyou:
+  security:
+    jwt-key: giaogiaogiao
+    token-expired-in: 86400000
