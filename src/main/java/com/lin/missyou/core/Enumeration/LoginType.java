@@ -1,4 +1,4 @@
-package com.lin.missyou.core.Enumeration;
+package com.lin.missyou.core.enumeration;
 
 /**
  * 〈一句话功能简述〉<br>

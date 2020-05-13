@@ -48,7 +48,7 @@ public class GenericAndJson {
     }
 
     /*@SuppressWarnings("all")
-    public static <T> T jsonToObject(String s, Class<T> classT) {
+    public stat <T> T jsonToObject(String s, Class<T> classT) {
         if (s == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public class GenericAndJson {
         }
     }*/
 
-    /*public static <T> T jsonToObject(String s){
+    /*public stat <T> T jsonToObject(String s){
         if(s==null){
             return null;
         }
@@ -74,7 +74,7 @@ public class GenericAndJson {
         }
     }*/
 
-    /*public static <T> List<T> jsonToList(String s){
+    /*public stat <T> List<T> jsonToList(String s){
         if(s==null){
             return null;
         }

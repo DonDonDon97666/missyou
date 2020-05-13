@@ -1,7 +1,11 @@
 package com.lin.missyou.util;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -34,6 +39,30 @@ public class JwtToken {
         JwtToken.expireTimeIn = expireTimeIn;
     }
 
+    public static Optional<Map<String, Claim>> getClaims(String token) {
+        DecodedJWT decodedJWT;
+        Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        try {
+            decodedJWT = verifier.verify(token);
+        } catch (JWTVerificationException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
+        return Optional.of(decodedJWT.getClaims());
+    }
+
+    public static Boolean verifyToken(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(JwtToken.jwtKey);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            verifier.verify(token);
+        } catch (JWTVerificationException e) {
+            return false;
+        }
+        return true;
+    }
+
     public static String makeToken(Long uid, Integer scope) {
         return JwtToken.getToken(uid, scope);
     }
@@ -50,8 +79,8 @@ public class JwtToken {
         String token = JWT.create()
                 .withClaim("uid", uid)
                 .withClaim("scope", scope)
-                .withExpiresAt(dateMap.get("now"))
-                .withIssuedAt(dateMap.get("expireTime"))
+                .withExpiresAt(dateMap.get("expireTime"))
+                .withIssuedAt(dateMap.get("now"))
                 .sign(algorithm);
 
         return token;

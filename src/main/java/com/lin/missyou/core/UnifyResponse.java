@@ -1,5 +1,7 @@
 package com.lin.missyou.core;
 
+import com.lin.missyou.exception.CreateSuccess;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈〉
@@ -29,5 +31,9 @@ public class UnifyResponse {
 
     public String getRequest() {
         return request;
+    }
+
+    public static void createSuccess(){
+        throw new CreateSuccess(0);
     }
 }

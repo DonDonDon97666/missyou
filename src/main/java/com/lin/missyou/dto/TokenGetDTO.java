@@ -1,6 +1,6 @@
 package com.lin.missyou.dto;
 
-import com.lin.missyou.core.Enumeration.LoginType;
+import com.lin.missyou.core.enumeration.LoginType;
 import com.lin.missyou.dto.validators.TokenPassword;
 import lombok.Getter;
 import lombok.Setter;

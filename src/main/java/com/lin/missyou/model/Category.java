@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @Where(clause = "delete_time is null and online = 1")
 @Getter
 @Setter
-public class Category extends BaseEntity{
+public class Category extends BaseEntity {
     @Id
     private Long id;
     private String name;
@@ -28,4 +28,9 @@ public class Category extends BaseEntity{
     private String img;
     private Long index;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "coupon_category",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "coupon_id"))
+    private List<Coupon> coupons;
 }

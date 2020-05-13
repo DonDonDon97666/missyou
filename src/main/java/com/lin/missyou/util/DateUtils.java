@@ -3,6 +3,7 @@ package com.lin.missyou.util;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -22,4 +23,12 @@ public class DateUtils {
     public static LocalDateTime asLocalDateTime(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
+
+    public static boolean isInTimeLine(LocalDateTime date, LocalDateTime start, LocalDateTime end) {
+        if (date.isAfter(start) && date.isBefore(end)) {
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.lin.missyou.enumeration;
 
-import com.lin.missyou.core.Enumeration.LoginType;
+import com.lin.missyou.core.enumeration.LoginType;
 import org.junit.Test;
 
 /**

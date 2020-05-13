@@ -54,6 +54,8 @@ public class WxAuthenticationService {
         return this.registerUser(session);
     }
 
+
+
     private String registerUser(Map<String, Object> session) {
         String openId = (String) session.get("openid");
         if (StringUtils.isEmpty(openId)) {
